@@ -1,0 +1,167 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- UNIVERSAL PREAMBLE BLOCK ---
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fontspec}
+
+\usepackage[spanish, bidi=basic, provide=*]{babel}
+
+\babelprovide[import, onchar=ids fonts]{spanish}
+\babelprovide[import, onchar=ids fonts]{english}
+
+% Set default/Latin font to Sans Serif in the main (rm) slot
+\babelfont{rm}{Noto Sans}
+
+% Add because main language is not English
+\usepackage{enumitem}
+\setlist[itemize]{label=-}
+
+% --- ADDITIONAL PACKAGES FOR THIS TEMPLATE ---
+\usepackage{tcolorbox} % Para la caja de "Nota Importante"
+\usepackage{titlesec}  % Para formato de títulos
+\usepackage{hyperref}  % Para enlaces
+\usepackage{xcolor}    % Para colores
+
+% Configuración de colores
+\definecolor{warningbg}{RGB}{255, 240, 220}
+\definecolor{warningborder}{RGB}{255, 150, 0}
+\definecolor{sectionblue}{RGB}{0, 70, 150}
+
+% Título del documento
+\title{\textbf{Guía de Diseño de la Solución y Arquitectura del Sistema}\\ \large Human Perception in Computer Vision (HPCV)}
+
+\author{Prof. Pablo F. Ordoñez Ordoñez}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+% ⚠️ NOTA IMPORTANTE
+\begin{tcolorbox}[colback=warningbg, colframe=warningborder, title=\textbf{⚠️ NOTA IMPORTANTE - LEER ANTES DE INICIAR}]
+Para proceder con esta fase de Diseño, es \textbf{obligatorio} haber incorporado todas las correcciones y observaciones recibidas durante la revisión de la fase anterior (Análisis del Problema). Este documento debe reflejar una versión madura de la definición del problema antes de detallar la solución técnica.
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+\section{Título del Proyecto (Refinado)}
+Debe reflejar la integración de Percepción Humana, Visión por Computador e IA.
+\begin{itemize}
+    \item \textit{Ejemplo: "Sistema de detección de fatiga visual (HP) mediante análisis de parpadeo y PERCLOS (CV) utilizando Redes Neuronales Recurrentes (AI)."}
+\end{itemize}
+
+\section{Datos del Estudiante}
+\begin{itemize}
+    \item \textbf{Nombre completo:} 
+    \item \textbf{Correo institucional:} 
+    \item \textbf{Carrera y ciclo:} 
+\end{itemize}
+
+\section{Definición del Problema (Versión Final Corregida)}
+Resumen ejecutivo (máx. 1 página) integrando las correcciones de la Fase 1.
+\begin{itemize}
+    \item \textbf{3.1. Contexto:} Escenario donde ocurre el problema (educativo, médico, industrial).
+    \item \textbf{3.2. Dimensión Human Perception (HP):} Procesos cognitivos/visuales afectados (atención, carga cognitiva, sesgos, FATE).
+    \item \textbf{3.3. Dimensión Computer Vision (CV):} Necesidad de extracción automatizada de características visuales.
+    \item \textbf{3.4. Dimensión AI/ML/DL:} Justificación de modelos inteligentes para patrones complejos.
+\end{itemize}
+
+\section{Objetivos (Refinados)}
+\begin{itemize}
+    \item \textbf{4.1. Objetivo General:} (Integrando HP + CV + IA).
+    \item \textbf{4.2. Objetivos Específicos:} (Técnicos, medibles y orientados a la implementación).
+\end{itemize}
+
+\section{Modelos de Análisis (Versión Corregida)}
+\textit{\textbf{Instrucción:} Presente aquí los diagramas de la Fase 1 \textbf{ya corregidos}. Esta es la base lógica del sistema antes de entrar en la arquitectura técnica.}
+
+\begin{itemize}
+    \item \textbf{6.1. Modelo de Contexto:} Relación entre Usuario, Sensores/Cámaras y Entorno.
+    \item \textbf{6.2. Diagrama de Casos de Uso (HP/CV):} Interacciones centradas en la percepción y la captura de datos. Diagrama de casos de uso del sistema, por cada Cu dos escenarios con su respectivo workflow.
+    \item \textbf{6.3. Modelo Conceptual de Dominio:} Entidades clave (ej. \texttt{Estímulo}, \texttt{FrameVideo}, \texttt{FeatureMap}, \texttt{Predicción}).
+    \item \textbf{6.4. Diagrama de Flujo del Fenómeno Perceptual:} Secuencia de acciones humanas y puntos de intervención del sistema.
+\end{itemize}
+
+\section{Diseño de la Solución (Arquitectura y Modelado Formal)}
+\textit{\textbf{Instrucción General:} Utilice un lenguaje de modelado formal (UML, SysML, C4, Diagramas de Bloques) para describir la estructura técnica. Tiene libertad para elegir los diagramas que mejor expliquen su solución.}
+
+\subsection{Arquitectura General del Sistema (Pipeline de Visión)}
+Diagrama de alto nivel que muestre el flujo completo de la información.
+\begin{itemize}
+    \item \textit{Debe evidenciar:} Adquisición (Cámaras/Sensores) $\rightarrow$ Preprocesamiento $\rightarrow$ Módulo IA $\rightarrow$ Interfaz/Feedback.
+\end{itemize}
+
+\subsection{Diagrama de Secuencia General}
+Diagrama que ilustre la cronología de una interacción completa (Happy Path).
+\begin{itemize}
+    \item \textit{Ejemplo:} Estímulo Visual presentado $\rightarrow$ Ojo humano reacciona $\rightarrow$ Cámara captura frame $\rightarrow$ CV detecta ROI $\rightarrow$ Modelo IA clasifica $\rightarrow$ Sistema guarda métrica.
+\end{itemize}
+
+\subsection{Diseño del Componente de Percepción Humana (HP)}
+Diseño de la interacción y los estímulos.
+\begin{itemize}
+    \item \textbf{Diseño de Estímulos Visuales:} ¿Qué verá el usuario? (Imágenes, videos, UI experimental). Incluir bocetos o parámetros (color, contraste, frecuencia).
+    \item \textbf{Protocolo de Interacción:} ¿Cómo responde el usuario? (Gestos, mirada, teclado, voz).
+    \item \textbf{Consideraciones Éticas (FATE):} Diseño para mitigar sesgos o fatiga visual excesiva.
+\end{itemize}
+
+\subsection{Diseño del Componente CV e IA (El Núcleo Técnico)}
+Especificación detallada de los algoritmos y modelos.
+\begin{itemize}
+    \item \textbf{Estrategia de Adquisición:} Especificaciones de hardware (Resolución, FPS, iluminación controlada).
+    \item \textbf{Pipeline de Preprocesamiento (CV):} Diagrama de flujo de las operaciones clásicas (Grayscale, Histogram Eq, Data Augmentation, ROI Extraction).
+    \item \textbf{Arquitectura del Modelo (AI/DL):} Diagrama de la estructura interna del modelo seleccionado.
+    \begin{itemize}
+        \item \textit{Si es CNN:} Capas convolucionales, pooling, dense layers.
+        \item \textit{Si es Transformer/RNN:} Bloques de atención, secuencias.
+        \item \textit{Entradas y Salidas:} Definición de tensores (ej. Input: $224\times224\times3$, Output: Vector de probabilidades).
+    \end{itemize}
+\end{itemize}
+
+\section{Resultados Preliminares de Prototipado}
+\textit{\textbf{Instrucción:} Evidencia visual de que la implementación ha comenzado y es viable.}
+
+\subsection{Dataset y Datos de Entrada}
+Muestras de los datos que alimentarán al sistema.
+\begin{itemize}
+    \item Capturas de imágenes/video del dataset (propio o público).
+    \item Ejemplos de etiquetado (Ground Truth) si aplica.
+\end{itemize}
+
+\subsection{Pruebas de Visión por Computador (CV) (Opcional)}
+Resultados iniciales de procesamiento sin IA o pre-procesamiento.
+\begin{itemize}
+    \item Ejemplos: Detección de rostros (bounding boxes), filtros de bordes, segmentación por color, umbralización.
+\end{itemize}
+
+\subsection{Prototipo de Interfaz o Estímulos}
+\begin{itemize}
+    \item Capturas de la GUI/bocetos/Wireframes donde se presentarán los estímulos o se mostrarán los resultados al usuario.
+\end{itemize}
+
+\section{Plan de Implementación Técnica}
+Detalle las herramientas definitivas:
+\begin{itemize}
+    \item \textbf{Lenguajes:} (ej. Python, C++).
+    \item \textbf{Librerías CV:} (ej. OpenCV, Scikit-Image, PIL).
+    \item \textbf{Frameworks DL/ML:} (ej. PyTorch, TensorFlow/Keras, YOLOv8, MediaPipe).
+    \item \textbf{Hardware:} (ej. Webcam, GPU NVIDIA, Jetson Nano, Raspberry Pi).
+\end{itemize}
+
+\section{Estrategia de Evaluación}
+\begin{itemize}
+    \item \textbf{Métricas de IA/CV:} (Accuracy, Precision, Recall, F1-Score, IoU, FPS, Curvas de Loss).
+    \item \textbf{Métricas de Percepción Humana:} (Tiempos de reacción, tasa de error humano, cuestionarios subjetivos).
+    \item \textbf{Plan de Validación:} ¿Cómo se dividirá el dataset (Train/Val/Test)? ¿Se harán pruebas con usuarios reales?
+\end{itemize}
+
+\section{Referencias}
+Formato IEEE.
+
+\section{Anexos}
+\begin{itemize}
+    \item Prompt Engineering (Registro de uso de IA generativa).
+    \item Enlaces a repositorios/bocetos/wireframes/simulaciones de código o datasets.
+\end{itemize}
+
+\end{document}
